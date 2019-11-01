@@ -12,22 +12,12 @@
 
   <tbody>
 
-  <%= form_with url: tasks_path, method: :get, local: true do |form| %>
-    <%= form.select("tag_id", Tag.pluck(:title, :id), { include_blank: true }) %>
-    <%= form.submit 'Search', name: nil %>
-  <% end %>
-
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.title %></td>
         <td><%= link_to 'Show', task %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
-        <td><% task.tags.each do |tag| %>
-          <%= tag.title %>
-          <% end %>
-        </td>
 
       </tr>
     <% end %>
