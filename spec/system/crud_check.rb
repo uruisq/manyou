@@ -26,13 +26,13 @@ RSpec.describe 'タスク管理機能', type: :system do
     context '任意のタスク詳細画面に遷移したら、' do
       before do
         visit new_task_path
-        fill_in "title", with: 'kadai'
+        fill_in "title", with: 'you'
         click_button 'Create Task'
         visit tasks_path
         click_on 'Show'
       end
       it '該当タスクの内容が表示されたページに遷移する' do
-        expect(page).to have_content 'kadai'
+        expect(page).to have_content 'you'
       end
     end
   end
