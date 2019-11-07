@@ -1,7 +1,0 @@
-.search__body
-  = search_form_for(@q, url:root_path) do |f|
-    = f.label :title_cont
-    = f.search_field :title_cont, placeholder: "#{t(:keyword)}"
-    = f.label :status_id_eq
-    = f.select :status_id_eq, Task.status_ids.map{|k, v| [Task.status_ids_i18n[k], v]}
-    = f.submit

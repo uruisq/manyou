@@ -6,19 +6,19 @@
   <thead>
     <tr>
       <th><%= sort_link(@q, :title) %></th>
-      <th><%= sort_link(@q, :created_at) %></th>
+      <th><%= sort_link(@q, :created_at, default_order: :desc) %></th>
     </tr>
   </thead>
 
   <tbody>
 
-    <% @tasks.each do |task| %>
+    <% @tasks.reverse.each do |task| %>
       <tr>
         <td><%= task.title %></td>
         <td><%= task.created_at %></td>
         <td><%= link_to '詳細', task %></td>
         <td><%= link_to '編集', edit_task_path(task) %></td>
-        <td><%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '削除', task, method: :delete, data: { confirm: '削除しますか？' } %></td>
 
       </tr>
     <% end %>
