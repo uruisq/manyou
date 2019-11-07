@@ -7,7 +7,7 @@
 * psql (PostgreSQL) 11.5
 <br>
 ## テーブル構成（Database Table Info）
-
+============
 |User|||
 |:-:|:-:|:-:|
 |PK|id||
@@ -35,7 +35,7 @@
 
 <br>
 ## Herokuへのデプロイ手順（Deploy Process for Heroku）
-
+============
 ターミナルで以下のコマンドを入力
  
  ```
