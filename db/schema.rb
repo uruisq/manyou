@@ -1,5 +1,4 @@
-
-ActiveRecord::Schema.define(version: 2019_11_01_055720) do
+ActiveRecord::Schema.define(version: 2019_11_07_070519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +19,7 @@ ActiveRecord::Schema.define(version: 2019_11_01_055720) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.text "content"
     t.datetime "limit"
     t.integer "priority"

@@ -1,5 +1,5 @@
 ## 名称（Title）
-万葉（Mangyoh）
+万葉（Manyou）
 <br>
 ## 開発環境（Development environment）
 * ruby 2.6.3p62 (2019-04-16 revision 67580) [x86_64-darwin18]
@@ -7,6 +7,7 @@
 * psql (PostgreSQL) 11.5
 <br>
 ## テーブル構成（Database Table Info）
+
 |User|||
 |:-:|:-:|:-:|
 |PK|id||
@@ -31,3 +32,17 @@
 |:-:|:-:|:-:|
 |PK|id||
 ||title|string|
+
+<br>
+## Herokuへのデプロイ手順（Deploy Process for Heroku）
+
+ターミナルで以下のコマンドを入力
+ 
+ ```
+$ rails assets:precompile RAILS_ENV=production
+$ git add --all
+$ git commit -m "init"
+$ heroku create
+$ git push heroku master
+$ heroku run rails db:migrate
+```
