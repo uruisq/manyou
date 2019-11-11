@@ -5,5 +5,5 @@
   <%= @task.title %>
 </p>
 
-<%= link_to '編集', edit_task_path(@task) %> |
-<%= link_to '戻る', tasks_path %>
+<%= link_to t('view.edit'), edit_task_path(@task) %> |
+<%= link_to t('view.tasks_path'), tasks_path %>

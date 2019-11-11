@@ -1,6 +1,18 @@
 ---
 ja:
+  view:
+    title: タイトル
+    created_at: 作成日時
+    show: 詳細
+    edit: 編集
+    destroy: 削除
+    new_task: 新規投稿
+    tasks_path: 戻る
   activerecord:
+    attributes:
+      task:
+        title:
+        created_at:
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -212,3 +224,4 @@ ja:
         untouched: "未着手"
         in_progress: "作業中"
         done: "完了"
+
