@@ -219,7 +219,7 @@ ja:
     pm: 午後
   enums:
     task:
-      status_id:
+      status:
         undefined: "未設定"
         untouched: "未着手"
         in_progress: "作業中"

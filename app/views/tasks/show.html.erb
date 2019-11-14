@@ -2,7 +2,13 @@
 
 <p>
   <strong>Title:</strong>
-  <%= @task.title %>
+  <%= @task.title %><br>
+  <strong>Limit:</strong>
+  <%= @task.limit %><br>
+  <strong>Status:</strong>
+  <%= @task.status %><br>
+  <strong>Priority:</strong>
+  <%= @task.priority %><br>
 </p>
 
 <%= link_to t('view.edit'), edit_task_path(@task) %> |

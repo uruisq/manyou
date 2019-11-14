@@ -2,10 +2,25 @@
 
 <h1>Tasks</h1>
 
+<%= search_form_for(@q, url:root_path) do |f| %>
+  <div class="form-group">
+    <%= f.label :title, 'title' %>
+    <%= f.search_field :title_cont %>
+  </div>
+  <div class="form-group">
+    <%= f.label :status_eq, 'status' %>
+    <%= f.select :status_eq, Task.statuses.map{|k, v| [Task.statuses_i18n[k], v]}, include_blank: true %>
+  </div>
+  <%= f.submit '検索' %>
+<% end %>
+
 <table>
   <thead>
     <tr>
       <th><%= sort_link(@q, :title) %></th>
+      <th><%= sort_link(@q, :limit) %></th>
+      <th><%= sort_link(@q, :status) %></th>
+      <th><%= sort_link(@q, :priority) %></th>
       <th><%= sort_link(@q, :created_at, default_order: :desc) %></th>
     </tr>
   </thead>
@@ -15,11 +30,13 @@
     <% @tasks.reverse.each do |task| %>
       <tr>
         <td><%= task.title %></td>
+        <td><%= task.limit %></td>
+        <td><%= task.status %></td>
+        <td><%= task.priority %></td>
         <td><%= task.created_at %></td>
         <td><%= link_to t('view.show'), task %></td>
         <td><%= link_to t('view.edit'), edit_task_path(task) %></td>
         <td><%= link_to t('view.destroy'), task, method: :delete, data: { confirm: '削除しますか？' } %></td>
-
       </tr>
     <% end %>
   </tbody>
