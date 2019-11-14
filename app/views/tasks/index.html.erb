@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tasks</h1>
+<h2>Tasks</h2>
+<div class="content">
 
-<%= search_form_for(@q, url:root_path) do |f| %>
+<%= search_form_for(@q, url:root_path, class: 'mb-5') do |f| %>
   <div class="form-group">
     <%= f.label :title, 'title' %>
     <%= f.search_field :title_cont %>
@@ -11,10 +12,12 @@
     <%= f.label :status_eq, 'status' %>
     <%= f.select :status_eq, Task.statuses.map{|k, v| [Task.statuses_i18n[k], v]}, include_blank: true %>
   </div>
-  <%= f.submit '検索' %>
+  <%= f.submit '検索', class:"btn btn-dark" %>
 <% end %>
+<br>
+</div>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th><%= sort_link(@q, :title) %></th>
@@ -42,6 +45,9 @@
   </tbody>
 </table>
 
+<%= paginate @tasks, outer_window: 3 %>
+
 <br>
 
-<%= link_to t('view.new_task'), new_task_path %>
+<%= link_to t('view.new_task'), new_task_path, class: 'btn btn-dark' %>
+</div>
