@@ -6,4 +6,9 @@ RSpec.describe Task, type: :model do
     task = Task.new(title: '')
     expect(task).not_to be_valid
   end
+  it "statusが空ならバリデーションが通らない" do
+    task = Task.new(status: '')
+    expect(task).not_to be_valid
+  end
+
 end

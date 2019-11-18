@@ -5,12 +5,12 @@
 <div class="content">
   <%= search_form_for(@q, url:root_path, class: 'mb-5') do |f| %>
     <div class="form-group">
-      <%= f.label :title, 'title' %>
-      <%= f.search_field :title_cont %>
+      <%= f.label :title, 'title', id: "s_title" %>
+      <%= f.search_field :title_cont, id: "s_title" %>
     </div>
     <div class="form-group">
-      <%= f.label :status_eq, 'status' %>
-      <%= f.select :status_eq, Task.statuses.map{|k, v| [Task.statuses_i18n[k], v]}, include_blank: true %>
+      <%= f.label :status_eq, 'status', id: "s_status" %>
+      <%= f.select :status_eq, Task.statuses.map{|k, v| [Task.statuses_i18n[k], v]}, include_blank: true, id: "s_status" %>
     </div>
     <%= f.submit '検索', class:"btn btn-dark" %>
   <% end %>
