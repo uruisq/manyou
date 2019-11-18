@@ -14,8 +14,9 @@
   </div>
   <%= f.submit '検索', class:"btn btn-dark" %>
 <% end %>
-<br>
 </div>
+
+<p><%= page_entries_info @tasks %></p>
 
 <table class="table">
   <thead>
@@ -29,7 +30,6 @@
   </thead>
 
   <tbody>
-
     <% @tasks.reverse.each do |task| %>
       <tr>
         <td><%= task.title %></td>
