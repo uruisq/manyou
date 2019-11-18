@@ -1,22 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <h2>Tasks</h2>
+
 <div class="content">
-
-<%= search_form_for(@q, url:root_path, class: 'mb-5') do |f| %>
-  <div class="form-group">
-    <%= f.label :title, 'title' %>
-    <%= f.search_field :title_cont %>
-  </div>
-  <div class="form-group">
-    <%= f.label :status_eq, 'status' %>
-    <%= f.select :status_eq, Task.statuses.map{|k, v| [Task.statuses_i18n[k], v]}, include_blank: true %>
-  </div>
-  <%= f.submit '検索', class:"btn btn-dark" %>
-<% end %>
+  <%= search_form_for(@q, url:root_path, class: 'mb-5') do |f| %>
+    <div class="form-group">
+      <%= f.label :title, 'title' %>
+      <%= f.search_field :title_cont %>
+    </div>
+    <div class="form-group">
+      <%= f.label :status_eq, 'status' %>
+      <%= f.select :status_eq, Task.statuses.map{|k, v| [Task.statuses_i18n[k], v]}, include_blank: true %>
+    </div>
+    <%= f.submit '検索', class:"btn btn-dark" %>
+  <% end %>
 </div>
-
-<p><%= page_entries_info @tasks %></p>
 
 <table class="table">
   <thead>
@@ -30,7 +28,7 @@
   </thead>
 
   <tbody>
-    <% @tasks.reverse.each do |task| %>
+    <% @tasks.each do |task| %>
       <tr>
         <td><%= task.title %></td>
         <td><%= task.limit %></td>
@@ -45,7 +43,7 @@
   </tbody>
 </table>
 
-<%= paginate @tasks, outer_window: 3 %>
+<%= paginate @tasks, window: 2 %>
 
 <br>
 
