@@ -1,8 +1,9 @@
 class TasksController < ApplicationController
+  before_action :correct_user, only: [:show]
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @q = Task.ransack(params[:q])
+    @q = current_user.tasks.ransack(params[:q])
     @tasks = @q.result(distinct: true).order(id: :desc).page(params[:page])
   end
 
@@ -18,7 +19,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-
+    @task.user_id = current_user.id
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Taskを作成しました。' }
@@ -51,11 +52,18 @@ class TasksController < ApplicationController
   end
 
   private
-    def set_task
-      @task = Task.find(params[:id])
-    end
+  def set_task
+    @task = Task.find(params[:id])
+  end
 
-    def task_params
-      params.require(:task).permit(:title,:limit,:status,:priority)
+  def task_params
+    params.require(:task).permit(:title,:limit,:status,:priority)
+  end
+
+  def correct_user
+    task = Task.find(params[:id])
+    if current_user.id != task.user.id
+      redirect_to tasks_path, notice: '作成者ではありません。'
     end
+  end
 end
