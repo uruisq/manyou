@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.select(:id, :name, :email, :admin, :created_at, :updated_at, :password_digest).page(params[:page])
+    @users = User.all.page(params[:page])
   end
   
   def show
@@ -28,17 +28,17 @@ class Admin::UsersController < ApplicationController
 
   def update
     unless @user.update(user_params)
-      redirect_to admin_user_url(@user), notice: '更新できません'
+      redirect_to admin_user_url(@user), notice: '更新できませんでした'
     else
-      redirect_to admin_user_url(@user), notice: 'ユーザーを更新しました'
+      redirect_to admin_user_url(@user), notice: '更新しました'
     end
   end
-  
+
   def destroy
     unless @user.destroy
-      redirect_to admin_users_url, notice: '削除できません'
+      redirect_to admin_users_url, notice: '削除できませんでした'
     else
-      redirect_to admin_users_url, notice: 'ユーザーを削除しました'
+      redirect_to admin_users_url, notice: '削除しました'
     end
   end
 
@@ -48,7 +48,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
   end
 
   def require_admin

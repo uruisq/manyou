@@ -13,23 +13,23 @@
 <%= form_with(model: [:admin, @user], local: true) do |f| %>
 
   <div class = "form-group">
-    <%= f.label :ユーザー名 %>
-    <%= f.text_field :name %>
+    <%= f.label :ユーザー名, id: "name" %>
+    <%= f.text_field :name, id: "name" %>
   </div>
   <div class = "form-group">
-    <%= f.label :メールアドレス %>
-    <%= f.email_field :email %>
+    <%= f.label :メールアドレス, id: "email" %>
+    <%= f.email_field :email, id: "email" %>
   </div>
   <div class = "form-group">
-    <%= f.label :パスワード %>
-    <%= f.password_field :password %>
+    <%= f.label :パスワード, id: "password" %>
+    <%= f.password_field :password, id: "password" %>
   </div>
   <div class = "form-group">
-    <%= f.label :パスワード確認 %>
-    <%= f.password_field :password_confirmation %>
+    <%= f.label :パスワード確認, id: "password_confirmation" %>
+    <%= f.password_field :password_confirmation, id: "password_confirmation" %>
   </div>
   <div class = "form-group">
-    <%= f.label :管理者権限 %>
+    <%= f.label :admin, t('view.admin') %>
     <%= f.check_box :admin, {}, "true", "false" %>
   </div>
 
