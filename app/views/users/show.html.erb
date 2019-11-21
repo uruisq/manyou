@@ -1,21 +1,4 @@
 <h2><%= @user.name %>のページ</h2>
 <p>メールアドレス: <%= @user.email %></p>
-
-<% if current_user?(@user) %>
-  <p><%= link_to 'ユーザー情報の編集', edit_user_path %></p>
-<% end %>
-
-
-<hr>
-<p><span>task内容: </span>
-  <% @tasks.each do |task| %>
-    <%=link_to task.title, task_path(task.id) %>
-  <% end %>
-</p>
-
-<hr>
-<% if logged_in? %>
-  <p><%= link_to "taskはこちらから", tasks_path %></p>
-  <% else %>
-  <p><%= link_to "ログイン", new_session_path %>をしてください</p>
-<% end %>
+<br>
+<p><%= link_to 'ユーザー情報の編集', edit_user_path, class: 'btn btn-dark' %></p>

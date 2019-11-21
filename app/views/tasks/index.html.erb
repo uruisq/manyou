@@ -1,15 +1,15 @@
 <div class="row">
   <div class="col-12">
-  <h2>Tasks</h2>
+  <h2>My Tasks</h2>
 
     <div class="content">
       <%= search_form_for(@q, url:root_path, class: 'mb-5') do |f| %>
         <div class="form-group">
-          <%= f.label :title, 'title', id: "s_title" %>
+          <%= f.label :title, t('view.title'), id: "s_title" %>
           <%= f.search_field :title_cont, id: "s_title" %>
         </div>
         <div class="form-group">
-          <%= f.label :status_eq, 'status', id: "s_status" %>
+          <%= f.label :status_eq, t('view.status'), id: "s_status" %>
           <%= f.select :status_eq, Task.statuses.map{|k, v| [Task.statuses_i18n[k], v]}, include_blank: true, id: "s_status" %>
         </div>
         <%= f.submit '検索', class:"btn btn-dark" %>
@@ -45,7 +45,7 @@
       </tbody>
     </table>
 
-    <%= paginate @tasks, window: 2 %>
+    <%= paginate @tasks %>
     <br>
     <%= link_to t('view.new_task'), new_task_path, class: 'btn btn-dark' %>
     </div>

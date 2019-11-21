@@ -3,11 +3,11 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.select(:id, :name, :email, :admin, :created_at, :updated_at, :password_digest)
+    @users = User.select(:id, :name, :email, :admin, :created_at, :updated_at, :password_digest).page(params[:page])
   end
   
   def show
-    @tasks = @user.tasks
+    @tasks = @user.tasks.page(params[:page])
   end
 
   def new
@@ -20,7 +20,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to admin_user_url(@user), notice: t('flash.user_create')
+      redirect_to admin_user_url(@user), notice: 'Userを作成しました。'
     else
       render :new
     end
@@ -28,17 +28,17 @@ class Admin::UsersController < ApplicationController
 
   def update
     unless @user.update(user_params)
-      redirect_to admin_user_url(@user), notice: t('flash.no_admin')
+      redirect_to admin_user_url(@user), notice: '管理者ではありません。'
     else
-      redirect_to admin_user_url(@user), notice: t('flash.user_update')
+      redirect_to admin_user_url(@user), notice: 'Userを更新しました。'
     end
   end
   
   def destroy
     unless @user.destroy
-      redirect_to admin_users_url, notice: t('flash.no_admin')
+      redirect_to admin_users_url, notice: '管理者ではありません。'
     else
-      redirect_to admin_users_url, notice: t('flash.user_destroy')
+      redirect_to admin_users_url, notice: 'Userを削除しました。'
     end
   end
 

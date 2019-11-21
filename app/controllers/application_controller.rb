@@ -4,7 +4,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   before_action :login_required
 
+  class Forbidden < ActionController::ActionControllerError
+  end
+
   rescue_from Exception, with: :error_500 unless Rails.env.development?
+  rescue_from Forbidden, with: :error_404
   rescue_from AbstractController::ActionNotFound, with: :error_404 unless Rails.env.development?
   rescue_from ActionController::RoutingError, with: :error_404 unless Rails.env.development?
   rescue_from ActiveRecord::RecordNotFound, with: :error_404 unless Rails.env.development?
