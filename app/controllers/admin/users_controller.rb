@@ -20,7 +20,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to admin_user_url(@user), notice: 'Userを作成しました。'
+      redirect_to admin_user_url(@user), notice: 'Userを作成しました'
     else
       render :new
     end
@@ -28,17 +28,17 @@ class Admin::UsersController < ApplicationController
 
   def update
     unless @user.update(user_params)
-      redirect_to admin_user_url(@user), notice: '管理者ではありません。'
+      redirect_to admin_user_url(@user), notice: '更新できません'
     else
-      redirect_to admin_user_url(@user), notice: 'Userを更新しました。'
+      redirect_to admin_user_url(@user), notice: 'ユーザーを更新しました'
     end
   end
   
   def destroy
     unless @user.destroy
-      redirect_to admin_users_url, notice: '管理者ではありません。'
+      redirect_to admin_users_url, notice: '削除できません'
     else
-      redirect_to admin_users_url, notice: 'Userを削除しました。'
+      redirect_to admin_users_url, notice: 'ユーザーを削除しました'
     end
   end
 

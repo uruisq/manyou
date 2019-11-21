@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-12">
-  <h2>My Tasks</h2>
+  <h2><%= current_user.name %>のタスク一覧</h2>
+  <br>
 
     <div class="content">
       <%= search_form_for(@q, url:root_path, class: 'mb-5') do |f| %>
@@ -19,19 +20,17 @@
     <table class="table">
       <thead>
         <tr>
-          <th><%= sort_link(@q, :user) %></th>
-          <th><%= sort_link(@q, :title) %></th>
-          <th><%= sort_link(@q, :limit) %></th>
-          <th><%= sort_link(@q, :status) %></th>
-          <th><%= sort_link(@q, :priority) %></th>
-          <th><%= sort_link(@q, :created_at, default_order: :desc) %></th>
+          <th><%= sort_link(@q, :title, t('view.title')) %></th>
+          <th><%= sort_link(@q, :limit, t('view.limit')) %></th>
+          <th><%= sort_link(@q, :status, t('view.status')) %></th>
+          <th><%= sort_link(@q, :priority, t('view.priority')) %></th>
+          <th><%= sort_link(@q, :created_at, t('view.created_at')) %></th>
         </tr>
       </thead>
 
       <tbody>
         <% @tasks.each do |task| %>
           <tr>
-            <td><%= task.user.name %></td>
             <td><%= task.title %></td>
             <td><%= task.limit %></td>
             <td><%= task.status %></td>

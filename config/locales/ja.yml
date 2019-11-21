@@ -1,11 +1,24 @@
 ---
 ja:
   view:
+    mypage: マイページ
+    new_user: 新規ユーザー登録
+    logout: ログアウト
+    signin: サインイン
+    login: ログイン
+    login_page: ログイン画面
+    password: パスワード
+    password_confirmation: パスワード確認
+    user_update: ユーザーを更新
+    user_updatepage: ユーザー編集画面
+    admin_space: 管理者画面
     title: タイトル
     limit: 期限
     status: ステータス
     priority: 優先順位
     user: ユーザー名
+    admin_user: 管理者
+    not_admin_user: 一般ユーザー
     email: メールアドレス
     admin: 管理者権限
     task_count: タスク数
@@ -14,9 +27,7 @@ ja:
     edit: 編集
     destroy: 削除
     new_task: 新規投稿
-    tasks_path: 一覧
-    new_user: 新規ユーザー登録
-    tasks_path: 一覧
+    tasks_path: マイタスク一覧
   activerecord:
     attributes:
       task:

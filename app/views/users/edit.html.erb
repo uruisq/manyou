@@ -1,4 +1,4 @@
-<h2>update</h2>
+<h2><%= t('view.user_updatepage') %></h2>
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
@@ -11,17 +11,17 @@
 <% end %>
 
 <%= form_with(model: @user, local: true) do |f| %>  
-  <%= f.label :name %>
+  <%= f.label :name, t('view.user') %>
   <%= f.text_field :name %>
 
-  <%= f.label :email %>
+  <%= f.label :email, t('view.email') %>
   <%= f.email_field :email %>
 
-  <%= f.label :password %>
+  <%= f.label :password, t('view.password') %>
   <%= f.password_field :password %>
 
-  <%= f.label :password_confirmation %>
+  <%= f.label :password_confirmation, t('view.password_confirmation') %>
   <%= f.password_field :password_confirmation %>
 
-  <%= f.submit "Update my account" %>
+  <%= f.submit t('view.user_update') %>
 <% end %>
