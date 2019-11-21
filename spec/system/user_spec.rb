@@ -70,7 +70,7 @@ RSpec.describe "ユーザのsystem spec", type: :system do
       visit admin_users_path
       expect(page).to have_content 'test02@test.com'
     end
-    it "管理画面でユーザ一の作成ができる（権限の付与ができる）" do
+    it "管理画面でユーザ一の作成・編集・削除ができる（権限の付与ができる）" do
       visit login_path
       fill_in "メールアドレス", with: "test03@test.com"
       fill_in "パスワード", with: "111111"
