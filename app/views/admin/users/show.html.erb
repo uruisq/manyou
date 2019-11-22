@@ -1,0 +1,33 @@
+<h2>
+<%= @user.name %>のページ
+<% if @user.admin? %>
+<%= "【管理者】" %>
+<% end %>
+</h2>
+<p>メールアドレス: <%= @user.email %></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= t('view.title') %></th>
+      <th><%= t('view.limit') %></th>
+      <th><%= t('view.status') %></th>
+      <th><%= t('view.priority') %></th>
+      <th><%= t('view.created_at') %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.limit %></td>
+        <td><%= task.status %></td>
+        <td><%= task.priority %></td>
+        <td><%= task.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= paginate @tasks %>

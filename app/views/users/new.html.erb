@@ -1,5 +1,32 @@
-<h1>New User</h1>
+<h2><%= t('view.signin') %></h2>
+<br>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
-<%= render 'form', user: @user %>
-
-<%= link_to 'Back', users_path %>
+<%= form_with(model: @user, local: true) do |f| %>
+  <div class = "form-group w-50">
+    <%= f.label :ユーザー名 %>
+    <%= f.text_field :name %>
+  </div>
+  <div class = "form-group">
+    <%= f.label :メールアドレス %>
+    <%= f.email_field :email %>
+  </div>
+  <div class = "form-group">
+    <%= f.label :パスワード %>
+    <%= f.password_field :password %>
+  </div>
+  <div class = "form-group">
+    <%= f.label :パスワード確認 %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <%= f.submit "新規登録" %>
+<% end %>

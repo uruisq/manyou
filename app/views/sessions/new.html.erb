@@ -1,0 +1,11 @@
+<h2><%= t('view.login_page') %></h2>
+<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+
+  <%= f.label :email, t('view.email'), id: "email" %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password, t('view.password'), id: "password" %>
+  <%= f.password_field :password %>
+
+  <%= f.submit t('view.login'), id: "submit" %>
+<% end %>

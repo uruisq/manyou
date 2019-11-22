@@ -1,6 +1,27 @@
-<h1>Editing User</h1>
+<h2><%= t('view.user_updatepage') %></h2>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
-<%= render 'form', user: @user %>
+<%= form_with(model: @user, local: true) do |f| %>  
+  <%= f.label :name, t('view.user') %>
+  <%= f.text_field :name %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+  <%= f.label :email, t('view.email') %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password, t('view.password') %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation, t('view.password_confirmation') %>
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.submit t('view.user_update') %>
+<% end %>

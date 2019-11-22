@@ -10,8 +10,33 @@
   </head>
 
   <body>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
+    <p></p>
+
+    <% if logged_in? %>
+    　<%= link_to t('view.mypage'), user_path(current_user.id) %>　
+      <%= link_to t('view.logout'), session_path(current_user.id), method: :delete %>
+    <% else %>
+    　<%= link_to t('view.signin'), new_user_path %>　
+      <%= link_to t('view.login'), new_session_path %>
+    <% end %>　
+    <% if logged_in? && current_user.admin? %>
+      <%= link_to t('view.admin_space'), admin_users_path %>
+    <% end %>　
+    <% if logged_in? %>
+      <%= link_to t('view.tasks_path'), tasks_path %>
+    <% end %>
+
+    <hr>
     <div class="container">
       <%= yield %>
     </div>
+
   </body>
+
+  <footer class="footer">　
+  </footer>
+
 </html>

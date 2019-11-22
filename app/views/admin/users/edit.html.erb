@@ -1,0 +1,36 @@
+<h2><%= t('view.user_updatepage') %></h2>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with(model: [:admin, @user], local: true) do |f| %> 
+
+  <div class = "form-group">
+    <%= f.label :name, t('view.user'), id: "name" %>
+    <%= f.text_field :name, id: "name" %>
+  </div>
+  <div class = "form-group">
+    <%= f.label :email, t('view.email'), id: "email" %>
+    <%= f.email_field :email, id: "email" %>
+  </div>
+  <div class = "form-group">
+    <%= f.label :password, t('view.password'), id: "password" %>
+    <%= f.password_field :password, id: "password" %>
+  </div>
+  <div class = "form-group">
+    <%= f.label :password_confirmation, t('view.password_confirmation'), id: "password_confirmation" %>
+    <%= f.password_field :password_confirmation, id: "password_confirmation" %>
+  </div>
+  <div class = "form-group">
+    <%= f.label :admin, t('view.admin') %>
+    <%= f.check_box :admin, {}, "true", "false" %>
+  </div>
+  <%= f.submit t('view.user_update') %>
+<% end %>
