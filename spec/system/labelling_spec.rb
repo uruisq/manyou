@@ -7,6 +7,7 @@ RSpec.describe "エラーページとラベリング機能のsystem spec", type:
     FactoryBot.create(:tag01)
     FactoryBot.create(:tag02)
     Task.create!(id: '1',title: 'test01',limit: '2019/12/1 16:00',status: '未着手',user_id: @test03.id)
+    Task.create!(id: '2',title: 'test02',limit: '2019/12/2 16:00',status: '未着手',user_id: @test03.id)
     visit login_path
     fill_in "メールアドレス", with: "test03@test.com"
     fill_in "パスワード", with: "111111"
@@ -22,6 +23,17 @@ RSpec.describe "エラーページとラベリング機能のsystem spec", type:
       click_button '更新する'
       expect(page).to have_content 'tag01'
       expect(page).to have_content 'tag02'
+    end
+    it "つけたラベルで検索できる" do
+      visit tasks_path
+      click_on '編集', match: :first
+      check ('tag01')
+      click_button '更新する'
+      visit tasks_path
+      check ('tag01')
+      click_button '検索'
+      expect(page).to have_content 'test02'
+      expect(page).not_to have_content 'test01'
     end
   end
 
