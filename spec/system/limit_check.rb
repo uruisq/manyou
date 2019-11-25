@@ -6,7 +6,7 @@ RSpec.describe '終了期限のテスト', type: :system do
     @other_user = FactoryBot.create(:test01)
     visit login_path
     fill_in "メールアドレス", with: "test01@test.com"
-    fill_in "パスワード", with: "111111"
+    fill_in "パスワード", with: "555555"
     click_on "submit"
   end
 
