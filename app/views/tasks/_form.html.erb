@@ -10,7 +10,7 @@
     </div>
   <% end %>
 
-  <div class = "form-group w-50">
+  <div class = "form-group">
     <%= form.label :title, t('view.title'), id: "title" %>
     <%= form.text_field :title, id: "title", class:"form-control" %>
   </div>
@@ -25,6 +25,10 @@
   <div class = "form-group">
     <%= form.label :priority, t('view.priority'), id: "priority" %>
     <%= form.select :priority, Task.priorities.keys, class:"form-control" %>
+  </div>
+  <div class="form">
+    <%= form.label :tag, t('view.tag'), id: "tag" %>
+    <%= form.collection_check_boxes(:tag_ids, Tag.all, :id, :title) %>
   </div>
   <%= form.submit %>
 <% end %>

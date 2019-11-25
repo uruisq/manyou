@@ -14,6 +14,7 @@
       <th><%= t('view.status') %></th>
       <th><%= t('view.priority') %></th>
       <th><%= t('view.created_at') %></th>
+      <th><%= t('view.tag') %></th>
     </tr>
   </thead>
 
@@ -25,6 +26,10 @@
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
         <td><%= task.created_at %></td>
+        <td><% task.tags.each do |tag| %>
+              <%= tag.title %>
+            <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

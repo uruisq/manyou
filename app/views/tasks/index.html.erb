@@ -13,7 +13,13 @@
           <%= f.label :status_eq, t('view.status'), id: "s_status" %>
           <%= f.select :status_eq, Task.statuses.map{|k, v| [Task.statuses_i18n[k], v]}, include_blank: true, id: "s_status" %>
         </div>
-        <%= f.submit '検索', class:"btn btn-dark" %>
+
+        <div class="form-group">
+          <%= f.label :tag_eq, t('view.tag'), id: "s_tag" %>
+          <%= f.collection_check_boxes :tags_id_in, @tags, :id, :title %>
+        </div>
+
+        <%= f.submit '検索', class:"btn btn-dark", name:nil %>
       <% end %>
     </div>
 
@@ -25,6 +31,7 @@
           <th><%= sort_link(@q, :status, t('view.status')) %></th>
           <th><%= sort_link(@q, :priority, t('view.priority')) %></th>
           <th><%= sort_link(@q, :created_at, t('view.created_at')) %></th>
+          <th><%= sort_link(@q, :tag, t('view.tag')) %></th>
         </tr>
       </thead>
 
@@ -36,6 +43,11 @@
             <td><%= task.status %></td>
             <td><%= task.priority %></td>
             <td><%= task.created_at %></td>
+            <td>
+              <% task.tags.each do |tag| %>
+                <%= tag.title %>　
+              <% end %>
+            </td>
             <td><%= link_to t('view.show'), task %></td>
             <td><%= link_to t('view.edit'), edit_task_path(task) %></td>
             <td><%= link_to t('view.destroy'), task, method: :delete, data: { confirm: '削除しますか？' } %></td>

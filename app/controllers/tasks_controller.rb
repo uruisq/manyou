@@ -4,7 +4,8 @@ class TasksController < ApplicationController
 
   def index
     @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct: true).order(id: :desc).page(params[:page])
+    @tags = Tag.all
+    @tasks = @q.result(distinct: true).includes(:tags).order(id: :desc).page(params[:page])
   end
 
   def show
@@ -57,7 +58,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title,:limit,:status,:priority)
+    params.require(:task).permit(:title,:limit,:status,:priority, { tag_ids: [] })
   end
 
   def correct_user

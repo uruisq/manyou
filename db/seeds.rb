@@ -20,3 +20,13 @@ User.create(
   email: "nomal02@nomal.com",
   password: "555555",
   )
+
+Tag.create(
+  title: "私用"
+)
+Tag.create(
+  title: "公用"
+)
+Tag.create(
+  title: "問題"
+)
