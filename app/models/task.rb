@@ -5,4 +5,6 @@ class Task < ApplicationRecord
   enum priority: { "高":1, "中":2, "低":3 }
   
   belongs_to :user
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
 end
